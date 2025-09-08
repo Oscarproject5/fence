@@ -9,58 +9,55 @@ const projects = [
     id: 1,
     title: 'Residential Privacy Fence - Brownsville',
     category: 'Wood Privacy',
-    before: 'https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2940',
-    after: 'https://images.unsplash.com/photo-1506003094589-53954a26283f?q=80&w=2787',
+    image: '/images/residential fence.jpeg',
     description: '6ft cedar privacy fence with decorative top caps'
   },
   {
     id: 2,
     title: 'Ranch Fencing - McAllen Area',
     category: 'Ranch & Farm',
-    before: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2799',
-    after: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2874',
+    image: '/images/residential fence.jpeg',
     description: 'Complete ranch perimeter with gates and cattle guards'
   },
   {
     id: 3,
-    title: 'Commercial Chain Link - Harlingen',
+    title: 'Chain Link Fencing - Harlingen',
     category: 'Chain Link',
-    before: 'https://images.unsplash.com/photo-1625411553237-d44b0d91bb66?q=80&w=2940',
-    after: 'https://images.unsplash.com/photo-1603906489920-ee2a1b22612f?q=80&w=2787',
-    description: '8ft commercial grade chain link with barbed wire'
+    image: '/images/commercial chain link.jpeg',
+    residentialImage: '/images/residential chain link.jpeg',
+    commercialImage: '/images/commercial chain link.jpeg',
+    description: 'Professional grade chain link installation',
+    hasTypeToggle: true
   },
   {
     id: 4,
     title: 'Ornamental Iron - Mission',
     category: 'Wrought Iron',
-    before: 'https://images.unsplash.com/photo-1592595896616-c37162298647?q=80&w=2940',
-    after: 'https://images.unsplash.com/photo-1589129140837-67287c22521b?q=80&w=2765',
+    image: '/images/ornamental iron.jpeg',
     description: 'Custom ornamental iron with automatic gate'
   },
   {
     id: 5,
     title: 'Storm Damage Repair - Brownsville',
     category: 'Repair',
-    before: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2787',
-    after: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2832',
+    image: '/images/storm damage repair.jpeg',
     description: 'Complete fence rebuild after hurricane damage'
   },
   {
     id: 6,
     title: 'Custom Entry Gate - Edinburg',
     category: 'Custom Gates',
-    before: 'https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2940',
-    after: 'https://images.unsplash.com/photo-1580424917967-a8867a6e676e?q=80&w=2786',
+    image: '/images/custom entry gate.jpeg',
     description: 'Automated dual swing gate with intercom system'
   }
 ]
 
-const categories = ['All', 'Wood Privacy', 'Chain Link', 'Wrought Iron', 'Ranch & Farm', 'Repair', 'Custom Gates']
+const categories = ['All', 'Wood Privacy', 'Ranch & Farm', 'Chain Link', 'Wrought Iron', 'Repair', 'Custom Gates']
 
 export default function ProjectGallery() {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
-  const [showBefore, setShowBefore] = useState(false)
+  const [chainLinkType, setChainLinkType] = useState<'residential' | 'commercial'>('commercial')
 
   const filteredProjects = selectedCategory === 'All' 
     ? projects 
@@ -77,10 +74,10 @@ export default function ProjectGallery() {
           className="text-center mb-12"
         >
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Our Recent Projects
+            What We Build
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            See the transformation we bring to properties across the Rio Grande Valley
+            Professional fencing solutions for every property type and style preference
           </p>
         </motion.div>
 
@@ -120,49 +117,28 @@ export default function ProjectGallery() {
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
               >
-                {/* Image Container with Hover Effect */}
+                {/* Image Container */}
                 <div 
                   className="relative h-64 overflow-hidden cursor-pointer"
-                  onMouseEnter={() => setShowBefore(true)}
-                  onMouseLeave={() => setShowBefore(false)}
                   onClick={() => setSelectedProject(project)}
                 >
-                  {/* After Image */}
                   <img
-                    src={project.after}
-                    alt={`${project.title} - After`}
+                    src={project.hasTypeToggle && project.category === 'Chain Link' 
+                      ? (chainLinkType === 'residential' ? project.residentialImage : project.commercialImage)
+                      : project.image}
+                    alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   
-                  {/* Before Image Overlay */}
-                  <AnimatePresence>
-                    {showBefore && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute inset-0"
-                      >
-                        <img
-                          src={project.before}
-                          alt={`${project.title} - Before`}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                          BEFORE
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
-                  {/* Labels */}
-                  {!showBefore && (
-                    <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      AFTER
-                    </div>
-                  )}
+                  {/* Category Badge */}
+                  <div className="absolute top-4 left-4 bg-secondary-600 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                    {project.category}
+                  </div>
                   
-                  {/* Expand Icon */}
+                  {/* View Icon */}
                   <div className="absolute bottom-4 right-4 bg-white/90 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                     <FaExpand className="text-gray-700" />
                   </div>
@@ -174,11 +150,47 @@ export default function ProjectGallery() {
                     {project.category}
                   </span>
                   <h3 className="font-heading text-lg font-bold text-gray-800 mt-2 mb-2">
-                    {project.title}
+                    {project.hasTypeToggle && project.category === 'Chain Link' 
+                      ? `${chainLinkType === 'residential' ? 'Residential' : 'Commercial'} Chain Link - Harlingen`
+                      : project.title}
                   </h3>
-                  <p className="text-gray-600 text-sm">
-                    {project.description}
+                  <p className="text-gray-600 text-sm mb-3">
+                    {project.hasTypeToggle && project.category === 'Chain Link'
+                      ? (chainLinkType === 'residential' 
+                        ? '6ft residential chain link with vinyl coating'
+                        : '8ft commercial grade chain link with barbed wire')
+                      : project.description}
                   </p>
+                  {project.hasTypeToggle && (
+                    <div className="flex gap-2 mt-3">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setChainLinkType('residential');
+                        }}
+                        className={`px-3 py-1 text-xs rounded-full transition-all ${
+                          chainLinkType === 'residential'
+                            ? 'bg-secondary-600 text-white'
+                            : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                        }`}
+                      >
+                        Residential
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setChainLinkType('commercial');
+                        }}
+                        className={`px-3 py-1 text-xs rounded-full transition-all ${
+                          chainLinkType === 'commercial'
+                            ? 'bg-secondary-600 text-white'
+                            : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                        }`}
+                      >
+                        Commercial
+                      </button>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -194,20 +206,20 @@ export default function ProjectGallery() {
           className="text-center mt-12"
         >
           <p className="text-lg text-gray-700 mb-6">
-            Ready to transform your property like these?
+            Ready to get started with professional fencing for your property?
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => document.getElementById('quote-section')?.scrollIntoView({ behavior: 'smooth' })}
               className="btn-primary"
             >
-              Start Your Project
+              Get Your Free Quote
             </button>
             <a
               href="tel:956-555-3362"
               className="btn-secondary"
             >
-              Call for Consultation
+              Call 956-555-FENCE
             </a>
           </div>
         </motion.div>
@@ -237,35 +249,31 @@ export default function ProjectGallery() {
                 ✕
               </button>
               
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="relative">
-                  <img
-                    src={selectedProject.before}
-                    alt="Before"
-                    className="w-full rounded-lg"
-                  />
-                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    BEFORE
-                  </div>
-                </div>
-                <div className="relative">
-                  <img
-                    src={selectedProject.after}
-                    alt="After"
-                    className="w-full rounded-lg"
-                  />
-                  <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    AFTER
-                  </div>
+              <div className="relative">
+                <img
+                  src={selectedProject.hasTypeToggle && selectedProject.category === 'Chain Link'
+                    ? (chainLinkType === 'residential' ? selectedProject.residentialImage : selectedProject.commercialImage)
+                    : selectedProject.image}
+                  alt={selectedProject.title}
+                  className="w-full rounded-lg shadow-2xl"
+                />
+                <div className="absolute top-4 left-4 bg-secondary-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                  {selectedProject.category}
                 </div>
               </div>
               
               <div className="bg-white p-6 rounded-lg mt-4">
                 <h3 className="font-heading text-2xl font-bold text-gray-800 mb-2">
-                  {selectedProject.title}
+                  {selectedProject.hasTypeToggle && selectedProject.category === 'Chain Link'
+                    ? `${chainLinkType === 'residential' ? 'Residential' : 'Commercial'} Chain Link - Harlingen`
+                    : selectedProject.title}
                 </h3>
                 <p className="text-gray-600">
-                  {selectedProject.description}
+                  {selectedProject.hasTypeToggle && selectedProject.category === 'Chain Link'
+                    ? (chainLinkType === 'residential' 
+                      ? '6ft residential chain link with vinyl coating'
+                      : '8ft commercial grade chain link with barbed wire')
+                    : selectedProject.description}
                 </p>
               </div>
             </motion.div>

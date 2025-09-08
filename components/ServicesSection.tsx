@@ -19,9 +19,9 @@ const services = [
     icon: FaHome,
     color: 'bg-amber-600',
     images: [
-      'https://images.unsplash.com/photo-1506003094589-53954a26283f?q=80&w=2787',
-      'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2832',
-      'https://images.unsplash.com/photo-1518893494013-481c1d8ed3fd?q=80&w=2880'
+      '/images/residential fence.jpeg',
+      '/images/residential fence.jpeg',
+      '/images/residential fence.jpeg'
     ]
   },
   {
@@ -31,9 +31,9 @@ const services = [
     icon: FaLink,
     color: 'bg-gray-600',
     images: [
-      'https://images.unsplash.com/photo-1603906489920-ee2a1b22612f?q=80&w=2787',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2832',
-      'https://images.unsplash.com/photo-1625411553381-b837424b0ce3?q=80&w=2787'
+      '/images/residential chain link.jpeg',
+      '/images/commercial chain link.jpeg',
+      '/images/residential chain link.jpeg'
     ]
   },
   {
@@ -43,9 +43,9 @@ const services = [
     icon: FaCrown,
     color: 'bg-gray-800',
     images: [
-      'https://images.unsplash.com/photo-1589129140837-67287c22521b?q=80&w=2765',
-      'https://images.unsplash.com/photo-1612372606404-0ab33e7187ee?q=80&w=2878',
-      'https://images.unsplash.com/photo-1592595896616-c37162298647?q=80&w=2940'
+      '/images/ornamental iron.jpeg',
+      '/images/ornamental iron.jpeg',
+      '/images/ornamental iron.jpeg'
     ]
   },
   {
@@ -55,9 +55,9 @@ const services = [
     icon: FaHorse,
     color: 'bg-green-700',
     images: [
-      'https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2874',
-      'https://images.unsplash.com/photo-1508173278278-1e7652b9ca63?q=80&w=2940',
-      'https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?q=80&w=2940'
+      '/images/residential fence.jpeg',
+      '/images/residential fence.jpeg',
+      '/images/residential fence.jpeg'
     ]
   },
   {
@@ -67,9 +67,9 @@ const services = [
     icon: FaTools,
     color: 'bg-orange-600',
     images: [
-      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2938',
-      'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2787',
-      'https://images.unsplash.com/photo-1581092160607-e05f6e2a5e7e?q=80&w=2940'
+      '/images/storm damage repair.jpeg',
+      '/images/storm damage repair.jpeg',
+      '/images/storm damage repair.jpeg'
     ]
   },
   {
@@ -79,9 +79,9 @@ const services = [
     icon: FaDoorOpen,
     color: 'bg-yellow-700',
     images: [
-      'https://images.unsplash.com/photo-1580424917967-a8867a6e676e?q=80&w=2786',
-      'https://images.unsplash.com/photo-1612372606404-0ab33e7187ee?q=80&w=2878',
-      'https://images.unsplash.com/photo-1558036117-15d82a90b9b1?q=80&w=2940'
+      '/images/custom entry gate.jpeg',
+      '/images/custom entry gate.jpeg',
+      '/images/custom entry gate.jpeg'
     ]
   }
 ]
@@ -89,10 +89,21 @@ const services = [
 export default function ServicesSection() {
   const [selectedService, setSelectedService] = useState(services[0])
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [chainLinkType, setChainLinkType] = useState<'residential' | 'commercial'>('residential')
 
   const handleServiceClick = (service: typeof services[0]) => {
     setSelectedService(service)
     setCurrentImageIndex(0)
+  }
+
+  // Get the current image to display, considering chain link type switching
+  const getCurrentImage = () => {
+    if (selectedService.id === 'chain') {
+      return chainLinkType === 'commercial' 
+        ? '/images/commercial chain link.jpeg'
+        : '/images/residential chain link.jpeg'
+    }
+    return selectedService.images[currentImageIndex]
   }
 
   return (
@@ -110,7 +121,7 @@ export default function ServicesSection() {
           <div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `linear-gradient(rgba(245, 240, 235, 0.92), rgba(245, 240, 235, 0.95)), url('${selectedService.images[currentImageIndex]}')`,
+              backgroundImage: `linear-gradient(rgba(245, 240, 235, 0.92), rgba(245, 240, 235, 0.95)), url('${getCurrentImage()}')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               filter: 'brightness(1.1)'
@@ -172,7 +183,7 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* Image Gallery Thumbnails */}
+        {/* Image Gallery Thumbnails or Type Selector for Chain Link */}
         <motion.div
           key={selectedService.id}
           initial={{ opacity: 0, y: 20 }}
@@ -180,23 +191,64 @@ export default function ServicesSection() {
           transition={{ duration: 0.5 }}
           className="flex justify-center gap-4 mb-8"
         >
-          {selectedService.images.map((image, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentImageIndex(index)}
-              className={`relative w-24 h-24 rounded-lg overflow-hidden transition-all duration-300 ${
-                currentImageIndex === index 
-                  ? 'ring-4 ring-secondary-500 shadow-lg transform scale-110' 
-                  : 'opacity-70 hover:opacity-100'
-              }`}
-            >
-              <img
-                src={image}
-                alt={`${selectedService.title} example ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </button>
-          ))}
+          {selectedService.id === 'chain' ? (
+            // Special toggle for chain link
+            <>
+              <button
+                onClick={() => setChainLinkType('residential')}
+                className={`relative w-32 h-24 rounded-lg overflow-hidden transition-all duration-300 ${
+                  chainLinkType === 'residential'
+                    ? 'ring-4 ring-secondary-500 shadow-lg transform scale-110' 
+                    : 'opacity-70 hover:opacity-100'
+                }`}
+              >
+                <img
+                  src="/images/residential chain link.jpeg"
+                  alt="Residential Chain Link"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs py-1 text-center font-semibold">
+                  Residential
+                </div>
+              </button>
+              <button
+                onClick={() => setChainLinkType('commercial')}
+                className={`relative w-32 h-24 rounded-lg overflow-hidden transition-all duration-300 ${
+                  chainLinkType === 'commercial'
+                    ? 'ring-4 ring-secondary-500 shadow-lg transform scale-110' 
+                    : 'opacity-70 hover:opacity-100'
+                }`}
+              >
+                <img
+                  src="/images/commercial chain link.jpeg"
+                  alt="Commercial Chain Link"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs py-1 text-center font-semibold">
+                  Commercial
+                </div>
+              </button>
+            </>
+          ) : (
+            // Regular image thumbnails for other services
+            selectedService.images.map((image, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`relative w-24 h-24 rounded-lg overflow-hidden transition-all duration-300 ${
+                  currentImageIndex === index 
+                    ? 'ring-4 ring-secondary-500 shadow-lg transform scale-110' 
+                    : 'opacity-70 hover:opacity-100'
+                }`}
+              >
+                <img
+                  src={image}
+                  alt={`${selectedService.title} example ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))
+          )}
         </motion.div>
 
         {/* Call to Action */}
