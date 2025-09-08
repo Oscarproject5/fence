@@ -126,8 +126,9 @@ export default function ProjectGallery() {
                     src={project.hasTypeToggle && project.category === 'Chain Link' 
                       ? (chainLinkType === 'residential' ? project.residentialImage : project.commercialImage)
                       : project.image}
-                    alt={project.title}
+                    alt={`${project.title} - Professional fence installation by RGV Fencing contractors serving Rio Grande Valley Texas`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
                   />
                   
                   {/* Gradient Overlay */}
@@ -254,8 +255,9 @@ export default function ProjectGallery() {
                   src={selectedProject.hasTypeToggle && selectedProject.category === 'Chain Link'
                     ? (chainLinkType === 'residential' ? selectedProject.residentialImage : selectedProject.commercialImage)
                     : selectedProject.image}
-                  alt={selectedProject.title}
+                  alt={`${selectedProject.title} - Professional fence installation by RGV Fencing - Top rated fence contractors in Brownsville McAllen Harlingen TX`}
                   className="w-full rounded-lg shadow-2xl"
+                  loading="lazy"
                 />
                 <div className="absolute top-4 left-4 bg-secondary-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
                   {selectedProject.category}

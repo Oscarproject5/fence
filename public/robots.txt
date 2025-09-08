@@ -1,0 +1,35 @@
+# Robots.txt for RGV Fencing
+# https://rgvfencing.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Crawl-delay: 0
+
+# Googlebot specific
+User-agent: Googlebot
+Allow: /
+Allow: /*.js
+Allow: /*.css
+Disallow: /api/
+Crawl-delay: 0
+
+# Bingbot specific
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Crawl-delay: 1
+
+# Important pages for crawling
+Allow: /#services
+Allow: /#projects
+Allow: /#testimonials
+Allow: /#quote
+
+# Sitemap location
+Sitemap: https://rgvfencing.com/sitemap.xml
+
+# Host
+Host: https://rgvfencing.com

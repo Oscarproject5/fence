@@ -204,8 +204,9 @@ export default function ServicesSection() {
               >
                 <img
                   src="/images/residential chain link.jpeg"
-                  alt="Residential Chain Link"
+                  alt="Residential chain link fence installation in Rio Grande Valley - 6ft vinyl coated chain link fencing for homes in Brownsville McAllen Harlingen"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs py-1 text-center font-semibold">
                   Residential
@@ -221,8 +222,9 @@ export default function ServicesSection() {
               >
                 <img
                   src="/images/commercial chain link.jpeg"
-                  alt="Commercial Chain Link"
+                  alt="Commercial chain link fence installation RGV - 8ft galvanized security fencing with barbed wire for businesses in Brownsville McAllen"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs py-1 text-center font-semibold">
                   Commercial
@@ -243,8 +245,9 @@ export default function ServicesSection() {
               >
                 <img
                   src={image}
-                  alt={`${selectedService.title} example ${index + 1}`}
+                  alt={`${selectedService.title} installation in Rio Grande Valley - Professional fence contractors serving Brownsville McAllen Harlingen TX`}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </button>
             ))

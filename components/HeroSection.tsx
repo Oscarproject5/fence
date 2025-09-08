@@ -44,7 +44,7 @@ export default function HeroSection() {
             <span className="text-sm font-bold text-white uppercase tracking-wider">Serving All of Rio Grande Valley</span>
           </motion.div>
 
-          {/* Main Headline */}
+          {/* Main Headline - SEO Optimized */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -52,13 +52,13 @@ export default function HeroSection() {
             className="font-heading text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight text-white drop-shadow-2xl"
             style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.7)' }}
           >
-            Strong, Reliable Fences
+            #1 Fence Installation
             <span className="block text-yellow-400 mt-2 drop-shadow-2xl" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.8)' }}>
-              Built for the Rio Grande Valley
+              Brownsville, McAllen & Harlingen TX
             </span>
           </motion.h1>
 
-          {/* Subheadline */}
+          {/* Subheadline - SEO Optimized */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,9 +66,9 @@ export default function HeroSection() {
             className="text-xl md:text-2xl mb-8 text-white font-medium"
             style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.6)' }}
           >
-            Professional fence installation and repair for homes, ranches, and businesses
+            Professional fence contractors serving Rio Grande Valley since 2010
             <span className="block mt-2 text-lg text-yellow-100">
-              Brownsville, McAllen, Harlingen, and beyond
+              Wood • Chain Link • Wrought Iron • Ranch Fencing • Emergency Repairs
             </span>
           </motion.p>
 
