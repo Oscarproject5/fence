@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa'
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
 
 // Dynamically import map to avoid SSR issues
 const MapComponent = dynamic(() => import('./MapComponent'), { 
@@ -24,12 +24,99 @@ export default function QuoteSection() {
     fenceType: '',
     message: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [statusMessage, setStatusMessage] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    alert('Thank you for your quote request! We will contact you within 24 hours.')
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    const useVercelApi = process.env.NEXT_PUBLIC_USE_VERCEL_API === 'true'
+
+    try {
+      let response
+      let result
+
+      if (useVercelApi) {
+        // Option 1: Use Vercel API Route (works automatically when deployed to Vercel)
+        response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        })
+        result = await response.json()
+        
+      } else if (accessKey && accessKey !== 'YOUR_ACCESS_KEY_HERE') {
+        // Option 2: Use Web3Forms directly from client
+        const web3FormData = {
+          access_key: accessKey,
+          subject: `New Fence Quote Request from ${formData.name}`,
+          from_name: 'RGV Fencing Website',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          fence_type: formData.fenceType,
+          message: formData.message,
+          botcheck: false
+        }
+
+        response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(web3FormData)
+        })
+        result = await response.json()
+        
+      } else {
+        // Option 3: Fallback for development/testing
+        console.log('Form submission (dev mode):', formData)
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        result = { success: true }
+      }
+
+      if (result.success) {
+        setSubmitStatus('success')
+        setStatusMessage('Thank you! Your quote request has been sent successfully. We\'ll contact you within 24 hours.')
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          address: '',
+          fenceType: '',
+          message: ''
+        })
+      } else {
+        throw new Error(result.message || 'Form submission failed')
+      }
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+        setStatusMessage('')
+      }, 5000)
+
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+      setStatusMessage('Oops! Something went wrong. Please try again or call us directly at 956-555-FENCE.')
+      
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+        setStatusMessage('')
+      }, 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -170,10 +257,34 @@ export default function QuoteSection() {
 
               <button
                 type="submit"
-                className="w-full btn-primary"
+                disabled={isSubmitting}
+                className={`w-full btn-primary ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                Get My Free Quote
+                {isSubmitting ? 'Sending...' : 'Get My Free Quote'}
               </button>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3"
+                >
+                  <FaCheckCircle className="text-green-600 mt-0.5" />
+                  <p className="text-sm text-green-800">{statusMessage}</p>
+                </motion.div>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3"
+                >
+                  <FaExclamationCircle className="text-red-600 mt-0.5" />
+                  <p className="text-sm text-red-800">{statusMessage}</p>
+                </motion.div>
+              )}
 
               <p className="text-xs text-gray-500 mt-4 text-center">
                 * Required fields. We respect your privacy and will never share your information.
