@@ -59,26 +59,34 @@ export default function WhyChooseUs() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <img
-                  src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2938"
-                  alt="Fence installation team"
-                  className="rounded-lg shadow-lg h-48 w-full object-cover"
+                  src="/images/residential fence.jpeg"
+                  alt="Quality residential fence installation in RGV"
+                  className="rounded-lg shadow-lg h-48 w-full object-cover select-none"
+                  draggable="false"
+                  onContextMenu={(e) => e.preventDefault()}
                 />
                 <img
-                  src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2876"
-                  alt="Professional fence builders"
-                  className="rounded-lg shadow-lg h-64 w-full object-cover"
+                  src="/images/ornamental iron.jpeg"
+                  alt="Professional ornamental iron fence craftsmanship"
+                  className="rounded-lg shadow-lg h-64 w-full object-cover select-none"
+                  draggable="false"
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               </div>
               <div className="space-y-4 pt-8">
                 <img
-                  src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2832"
-                  alt="Quality fence materials"
-                  className="rounded-lg shadow-lg h-64 w-full object-cover"
+                  src="/images/custom entry gate.jpeg"
+                  alt="Custom entry gate installation and design"
+                  className="rounded-lg shadow-lg h-64 w-full object-cover select-none"
+                  draggable="false"
+                  onContextMenu={(e) => e.preventDefault()}
                 />
                 <img
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2832"
-                  alt="Completed fence project"
-                  className="rounded-lg shadow-lg h-48 w-full object-cover"
+                  src="/images/commercial chain link.jpeg"
+                  alt="Commercial grade chain link fence installation"
+                  className="rounded-lg shadow-lg h-48 w-full object-cover select-none"
+                  draggable="false"
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               </div>
             </div>
