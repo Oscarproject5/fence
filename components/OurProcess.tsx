@@ -25,7 +25,7 @@ const processSteps = [
     icon: FaClipboardCheck,
     description: 'Our experts visit your property to take measurements, assess terrain, and identify any special requirements.',
     color: 'bg-green-500',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee05f6e2a5e7e?q=80&w=2940'
+    image: '/images/Generated Image September 08, 2025 - 10_43AM.png'
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const processSteps = [
     icon: FaHammer,
     description: 'Our skilled team installs your fence with precision, using quality materials and proven techniques.',
     color: 'bg-orange-500',
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2876'
+    image: '/images/Generated Image September 08, 2025 - 10_39AM.png'
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ const processSteps = [
     icon: FaCheckCircle,
     description: 'We conduct a thorough inspection to ensure every detail meets our high standards and your expectations.',
     color: 'bg-red-500',
-    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2938'
+    image: '/images/Generated Image September 08, 2025 - 10_50AM.png'
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ const processSteps = [
     icon: FaHandshake,
     description: 'Your complete satisfaction is our goal. We provide warranty information and maintenance tips for your new fence.',
     color: 'bg-yellow-500',
-    image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2832'
+    image: '/images/Generated Image September 08, 2025 - 10_54AM.png'
   }
 ]
 
@@ -96,7 +96,10 @@ export default function OurProcess() {
                 <img
                   src={step.image}
                   alt={step.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 select-none"
+                  style={{ objectPosition: step.id === 4 ? 'center 20%' : 'center center' }}
+                  draggable="false"
+                  onContextMenu={(e) => e.preventDefault()}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 

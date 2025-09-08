@@ -1,7 +1,7 @@
 import HeroSection from '@/components/HeroSection'
 import ServicesSection from '@/components/ServicesSection'
 import WhyChooseUs from '@/components/WhyChooseUs'
-import ProjectGallery from '@/components/ProjectGallery'
+import OurProcess from '@/components/OurProcess'
 import Testimonials from '@/components/Testimonials'
 import QuoteSection from '@/components/QuoteSection'
 import SEOContent from '@/components/SEOContent'
@@ -13,7 +13,7 @@ export default function Home() {
       <HeroSection />
       <ServicesSection />
       <WhyChooseUs />
-      <ProjectGallery />
+      <OurProcess />
       <Testimonials />
       <SEOContent />
       <QuoteSection />

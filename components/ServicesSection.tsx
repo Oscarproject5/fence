@@ -1,137 +1,107 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { 
   FaHome, 
   FaLink, 
   FaCrown, 
   FaHorse, 
   FaTools, 
-  FaDoorOpen 
+  FaDoorOpen,
+  FaCheckCircle 
 } from 'react-icons/fa'
 
 const services = [
   {
     id: 'wood',
     title: 'Wood Privacy Fences',
-    description: 'Custom styles for security & curb appeal. Cedar, pine, and premium wood options.',
+    description: 'Custom cedar and pine fencing solutions that combine natural beauty with lasting durability.',
+    features: [
+      'Cedar, pine & premium wood options',
+      'Custom heights from 4ft to 8ft',
+      'Weather-resistant treatments',
+      'Various style options'
+    ],
     icon: FaHome,
-    color: 'bg-amber-600',
-    images: [
-      '/images/residential fence.jpeg',
-      '/images/residential fence.jpeg',
-      '/images/residential fence.jpeg'
-    ]
+    image: '/images/residential fence.jpeg',
+    color: 'from-amber-600 to-amber-700'
   },
   {
     id: 'chain',
     title: 'Chain Link Fences',
-    description: 'Affordable & durable for homes & businesses. Galvanized and vinyl-coated options.',
+    description: 'Affordable, durable fencing perfect for both residential properties and commercial facilities.',
+    features: [
+      'Galvanized & vinyl-coated options',
+      'Heights from 3ft to 12ft',
+      'Privacy slats available',
+      'Security features'
+    ],
     icon: FaLink,
-    color: 'bg-gray-600',
-    images: [
-      '/images/residential chain link.jpeg',
-      '/images/commercial chain link.jpeg',
-      '/images/residential chain link.jpeg'
-    ]
+    image: '/images/residential chain link.jpeg',
+    color: 'from-gray-600 to-gray-700'
   },
   {
     id: 'iron',
     title: 'Wrought Iron Fences',
-    description: 'Elegant & long-lasting protection. Custom designs and ornamental options.',
+    description: 'Elegant ornamental iron fencing that provides security while enhancing property value.',
+    features: [
+      'Custom decorative designs',
+      'Powder-coated finishes',
+      'Rust-resistant materials',
+      'Matching gates available'
+    ],
     icon: FaCrown,
-    color: 'bg-gray-800',
-    images: [
-      '/images/ornamental iron.jpeg',
-      '/images/ornamental iron.jpeg',
-      '/images/ornamental iron.jpeg'
-    ]
+    image: '/images/ornamental iron.jpeg',
+    color: 'from-gray-800 to-gray-900'
   },
   {
     id: 'ranch',
     title: 'Ranch & Farm Fencing',
-    description: 'Barbed wire, field fencing, and more. Livestock-safe and durable.',
+    description: 'Heavy-duty agricultural fencing designed to secure livestock and define property boundaries.',
+    features: [
+      'Barbed wire & field fencing',
+      'T-posts & wooden posts',
+      'Livestock-safe designs',
+      'Large area coverage'
+    ],
     icon: FaHorse,
-    color: 'bg-green-700',
-    images: [
-      '/images/residential fence.jpeg',
-      '/images/residential fence.jpeg',
-      '/images/residential fence.jpeg'
-    ]
+    image: '/images/residential fence.jpeg',
+    color: 'from-green-700 to-green-800'
   },
   {
     id: 'repair',
     title: 'Fence Repairs',
-    description: 'Quick, professional fixes. Storm damage, rot repair, and maintenance.',
+    description: 'Fast, professional repair services for all fence types, including storm damage restoration.',
+    features: [
+      'Emergency storm repairs',
+      'Post replacement',
+      'Gate realignment',
+      'Rot & rust treatment'
+    ],
     icon: FaTools,
-    color: 'bg-orange-600',
-    images: [
-      '/images/storm damage repair.jpeg',
-      '/images/storm damage repair.jpeg',
-      '/images/storm damage repair.jpeg'
-    ]
+    image: '/images/storm damage repair.jpeg',
+    color: 'from-orange-600 to-orange-700'
   },
   {
     id: 'gates',
     title: 'Custom Gates',
-    description: 'Secure and stylish property access. Automatic and manual options.',
+    description: 'Secure entry solutions tailored to match your fence style and security requirements.',
+    features: [
+      'Automatic & manual options',
+      'Security keypads',
+      'Custom designs',
+      'Professional installation'
+    ],
     icon: FaDoorOpen,
-    color: 'bg-yellow-700',
-    images: [
-      '/images/custom entry gate.jpeg',
-      '/images/custom entry gate.jpeg',
-      '/images/custom entry gate.jpeg'
-    ]
+    image: '/images/custom entry gate.jpeg',
+    color: 'from-yellow-700 to-yellow-800'
   }
 ]
 
 export default function ServicesSection() {
-  const [selectedService, setSelectedService] = useState(services[0])
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [chainLinkType, setChainLinkType] = useState<'residential' | 'commercial'>('residential')
-
-  const handleServiceClick = (service: typeof services[0]) => {
-    setSelectedService(service)
-    setCurrentImageIndex(0)
-  }
-
-  // Get the current image to display, considering chain link type switching
-  const getCurrentImage = () => {
-    if (selectedService.id === 'chain') {
-      return chainLinkType === 'commercial' 
-        ? '/images/commercial chain link.jpeg'
-        : '/images/residential chain link.jpeg'
-    }
-    return selectedService.images[currentImageIndex]
-  }
-
   return (
-    <section id="services" className="relative py-20 overflow-hidden">
-      {/* Animated Background Images */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`${selectedService.id}-${currentImageIndex}`}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.7 }}
-          className="absolute inset-0 z-0"
-        >
-          <div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `linear-gradient(rgba(245, 240, 235, 0.92), rgba(245, 240, 235, 0.95)), url('${getCurrentImage()}')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              filter: 'brightness(1.1)'
-            }}
-          />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Content */}
-      <div className="container-custom relative z-10">
+    <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -140,136 +110,108 @@ export default function ServicesSection() {
           className="text-center mb-12"
         >
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Our Fencing Services
+            What We Build
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Click on any service below to see examples of our work
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Professional fence installation and repair services throughout the Rio Grande Valley. 
+            Quality materials, expert craftsmanship, and competitive pricing.
           </p>
         </motion.div>
 
-        {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* Services Grid - Alternating Layout */}
+        <div className="space-y-20">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              onClick={() => handleServiceClick(service)}
-              className={`bg-white rounded-xl shadow-lg p-6 cursor-pointer transform transition-all duration-300 ${
-                selectedService.id === service.id 
-                  ? 'ring-4 ring-secondary-500 shadow-2xl -translate-y-2' 
-                  : 'hover:shadow-xl hover:-translate-y-1'
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={`flex flex-col lg:flex-row items-center gap-8 ${
+                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}
             >
-              <div className={`${service.color} w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto`}>
-                <service.icon className="text-white text-2xl" />
-              </div>
-              <h3 className="font-heading text-xl font-bold text-gray-800 mb-2">
-                {service.title}
-              </h3>
-              <p className="text-gray-600 text-sm">
-                {service.description}
-              </p>
-              {selectedService.id === service.id && (
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                  <span className="text-secondary-600 font-semibold text-sm">
-                    ✓ Currently Selected
-                  </span>
+              {/* Image Side */}
+              <div className="w-full lg:w-1/2">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+                  <img
+                    src={service.image}
+                    alt={`${service.title} installation in Rio Grande Valley - Professional fence contractors serving RGV TX`}
+                    className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110 select-none"
+                    loading="lazy"
+                    draggable="false"
+                    onContextMenu={(e) => e.preventDefault()}
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`} />
+                  
+                  {/* Icon Overlay */}
+                  <div className={`absolute top-4 ${index % 2 === 0 ? 'right-4' : 'left-4'} bg-white/90 backdrop-blur-sm p-3 rounded-full`}>
+                    <service.icon className="text-3xl text-gray-800" />
+                  </div>
                 </div>
-              )}
+              </div>
+
+              {/* Content Side */}
+              <div className="w-full lg:w-1/2 space-y-6">
+                <div>
+                  <h3 className="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Features List */}
+                <div className="space-y-3">
+                  {service.features.map((feature, featureIndex) => (
+                    <motion.div
+                      key={featureIndex}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.2 + featureIndex * 0.1 }}
+                      className="flex items-start gap-3"
+                    >
+                      <FaCheckCircle className="text-secondary-600 mt-1 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <div className="pt-4">
+                  <button
+                    onClick={() => document.getElementById('quote-section')?.scrollIntoView({ behavior: 'smooth' })}
+                    className={`inline-flex items-center px-6 py-3 bg-gradient-to-r ${service.color} text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300`}
+                  >
+                    Get Free Quote
+                    <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Image Gallery Thumbnails or Type Selector for Chain Link */}
-        <motion.div
-          key={selectedService.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex justify-center gap-4 mb-8"
-        >
-          {selectedService.id === 'chain' ? (
-            // Special toggle for chain link
-            <>
-              <button
-                onClick={() => setChainLinkType('residential')}
-                className={`relative w-32 h-24 rounded-lg overflow-hidden transition-all duration-300 ${
-                  chainLinkType === 'residential'
-                    ? 'ring-4 ring-secondary-500 shadow-lg transform scale-110' 
-                    : 'opacity-70 hover:opacity-100'
-                }`}
-              >
-                <img
-                  src="/images/residential chain link.jpeg"
-                  alt="Residential chain link fence installation in Rio Grande Valley - 6ft vinyl coated chain link fencing for homes in Brownsville McAllen Harlingen"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs py-1 text-center font-semibold">
-                  Residential
-                </div>
-              </button>
-              <button
-                onClick={() => setChainLinkType('commercial')}
-                className={`relative w-32 h-24 rounded-lg overflow-hidden transition-all duration-300 ${
-                  chainLinkType === 'commercial'
-                    ? 'ring-4 ring-secondary-500 shadow-lg transform scale-110' 
-                    : 'opacity-70 hover:opacity-100'
-                }`}
-              >
-                <img
-                  src="/images/commercial chain link.jpeg"
-                  alt="Commercial chain link fence installation RGV - 8ft galvanized security fencing with barbed wire for businesses in Brownsville McAllen"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs py-1 text-center font-semibold">
-                  Commercial
-                </div>
-              </button>
-            </>
-          ) : (
-            // Regular image thumbnails for other services
-            selectedService.images.map((image, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentImageIndex(index)}
-                className={`relative w-24 h-24 rounded-lg overflow-hidden transition-all duration-300 ${
-                  currentImageIndex === index 
-                    ? 'ring-4 ring-secondary-500 shadow-lg transform scale-110' 
-                    : 'opacity-70 hover:opacity-100'
-                }`}
-              >
-                <img
-                  src={image}
-                  alt={`${selectedService.title} installation in Rio Grande Valley - Professional fence contractors serving Brownsville McAllen Harlingen TX`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </button>
-            ))
-          )}
-        </motion.div>
-
-        {/* Call to Action */}
+        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="text-center mt-16 pt-12 border-t border-gray-200"
         >
           <p className="text-lg text-gray-700 mb-6">
-            Ready to transform your property with quality fencing?
+            Ready to upgrade your property with professional fencing?
           </p>
           <button
             onClick={() => document.getElementById('quote-section')?.scrollIntoView({ behavior: 'smooth' })}
             className="btn-primary"
           >
-            Get Your Free Quote
+            Schedule Free Consultation
           </button>
         </motion.div>
       </div>

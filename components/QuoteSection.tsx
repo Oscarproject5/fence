@@ -1,8 +1,19 @@
 'use client'
 
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa'
+
+// Dynamically import map to avoid SSR issues
+const MapComponent = dynamic(() => import('./MapComponent'), { 
+  ssr: false,
+  loading: () => (
+    <div className="h-64 bg-gray-200 rounded-lg animate-pulse flex items-center justify-center">
+      <span className="text-gray-500">Loading map...</span>
+    </div>
+  )
+})
 
 export default function QuoteSection() {
   const [formData, setFormData] = useState({
@@ -226,27 +237,8 @@ export default function QuoteSection() {
                 Our Service Coverage
               </h3>
               
-              {/* Map Placeholder */}
-              <div className="relative h-64 bg-gray-200 rounded-lg overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1569163139394-de4798aa62b6?q=80&w=2940"
-                  alt="Rio Grande Valley Map"
-                  className="w-full h-full object-cover opacity-50"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 text-center">
-                    <p className="font-semibold text-gray-800 mb-2">
-                      Proudly Serving the RGV
-                    </p>
-                    <div className="text-sm text-gray-600">
-                      <p>• Brownsville • McAllen</p>
-                      <p>• Harlingen • Mission</p>
-                      <p>• Edinburg • Pharr</p>
-                      <p>• And surrounding areas</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Free OpenStreetMap */}
+              <MapComponent />
 
               {/* Service Promise */}
               <div className="mt-6 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
