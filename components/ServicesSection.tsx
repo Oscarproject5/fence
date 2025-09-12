@@ -100,26 +100,26 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-white to-gray-50 md:bg-gradient-to-b">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12 px-4 sm:px-0"
         >
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4">
             What We Build
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Professional fence installation and repair services throughout the Rio Grande Valley. 
             Quality materials, expert craftsmanship, and competitive pricing.
           </p>
         </motion.div>
 
         {/* Services Grid - Alternating Layout */}
-        <div className="space-y-20">
+        <div className="space-y-12 sm:space-y-16 lg:space-y-20">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -127,7 +127,7 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`flex flex-col lg:flex-row items-center gap-8 ${
+              className={`flex flex-col lg:flex-row items-center gap-6 sm:gap-8 ${
                 index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}
             >
@@ -137,7 +137,7 @@ export default function ServicesSection() {
                   <img
                     src={service.image}
                     alt={`${service.title} installation in Rio Grande Valley - Professional fence contractors serving RGV TX`}
-                    className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110 select-none"
+                    className="w-full h-[250px] sm:h-[350px] lg:h-[400px] object-cover transition-transform duration-700 group-hover:scale-110 select-none"
                     loading="lazy"
                     draggable="false"
                     onContextMenu={(e) => e.preventDefault()}
@@ -145,25 +145,25 @@ export default function ServicesSection() {
                   <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`} />
                   
                   {/* Icon Overlay */}
-                  <div className={`absolute top-4 ${index % 2 === 0 ? 'right-4' : 'left-4'} bg-white/90 backdrop-blur-sm p-3 rounded-full`}>
-                    <service.icon className="text-3xl text-gray-800" />
+                  <div className={`absolute top-3 sm:top-4 ${index % 2 === 0 ? 'right-3 sm:right-4' : 'left-3 sm:left-4'} bg-white/90 backdrop-blur-sm p-2 sm:p-3 rounded-full`}>
+                    <service.icon className="text-xl sm:text-2xl lg:text-3xl text-gray-800" />
                   </div>
                 </div>
               </div>
 
               {/* Content Side */}
-              <div className="w-full lg:w-1/2 space-y-6">
+              <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6 px-4 sm:px-6 lg:px-0">
                 <div>
-                  <h3 className="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                  <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 sm:mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-lg text-gray-600 leading-relaxed">
+                  <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
                     {service.description}
                   </p>
                 </div>
 
                 {/* Features List */}
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   {service.features.map((feature, featureIndex) => (
                     <motion.div
                       key={featureIndex}
@@ -173,17 +173,17 @@ export default function ServicesSection() {
                       transition={{ duration: 0.4, delay: 0.2 + featureIndex * 0.1 }}
                       className="flex items-start gap-3"
                     >
-                      <FaCheckCircle className="text-secondary-600 mt-1 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                      <FaCheckCircle className="text-secondary-600 mt-0.5 sm:mt-1 flex-shrink-0 text-sm sm:text-base" />
+                      <span className="text-sm sm:text-base text-gray-700">{feature}</span>
                     </motion.div>
                   ))}
                 </div>
 
                 {/* CTA Button */}
-                <div className="pt-4">
+                <div className="pt-2 sm:pt-4">
                   <button
                     onClick={() => document.getElementById('quote-section')?.scrollIntoView({ behavior: 'smooth' })}
-                    className={`inline-flex items-center px-6 py-3 bg-gradient-to-r ${service.color} text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300`}
+                    className={`inline-flex items-center px-4 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r ${service.color} text-white font-semibold text-sm sm:text-base rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300`}
                   >
                     Get Free Quote
                     <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -202,14 +202,14 @@ export default function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mt-16 pt-12 border-t border-gray-200"
+          className="text-center mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-gray-200 px-4 sm:px-0"
         >
-          <p className="text-lg text-gray-700 mb-6">
+          <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6">
             Ready to upgrade your property with professional fencing?
           </p>
           <button
             onClick={() => document.getElementById('quote-section')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-primary"
+            className="btn-primary text-sm sm:text-base px-6 py-2.5 sm:px-8 sm:py-3"
           >
             Schedule Free Consultation
           </button>

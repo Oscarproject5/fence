@@ -6,18 +6,32 @@ import Testimonials from '@/components/Testimonials'
 import QuoteSection from '@/components/QuoteSection'
 import SEOContent from '@/components/SEOContent'
 import Footer from '@/components/Footer'
+import MobileNav from '@/components/MobileNav'
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <HeroSection />
-      <ServicesSection />
-      <WhyChooseUs />
-      <OurProcess />
-      <Testimonials />
-      <SEOContent />
-      <QuoteSection />
-      <Footer />
-    </main>
+    <>
+      <MobileNav />
+      <main className="min-h-screen">
+        <div id="home">
+          <HeroSection />
+        </div>
+        <div id="services">
+          <ServicesSection />
+        </div>
+        <div id="why-choose">
+          <WhyChooseUs />
+        </div>
+        <div id="process">
+          <OurProcess />
+        </div>
+        <div id="testimonials">
+          <Testimonials />
+        </div>
+        <SEOContent />
+        <QuoteSection />
+        <Footer />
+      </main>
+    </>
   )
 }
