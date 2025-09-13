@@ -73,4 +73,29 @@
   .backface-hidden {
     backface-visibility: hidden;
   }
+  
+  /* Mobile bottom padding for fixed nav */
+  @media (max-width: 768px) {
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+    
+    main {
+      padding-bottom: 64px !important;
+      min-height: 100vh;
+    }
+  }
+  
+  /* Pulse animation */
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
 }

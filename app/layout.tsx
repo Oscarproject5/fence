@@ -266,7 +266,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body className="font-sans bg-gray-50">
+      <body className="font-sans bg-gray-50" suppressHydrationWarning>
         {children}
       </body>
     </html>

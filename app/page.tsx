@@ -6,12 +6,11 @@ import Testimonials from '@/components/Testimonials'
 import QuoteSection from '@/components/QuoteSection'
 import SEOContent from '@/components/SEOContent'
 import Footer from '@/components/Footer'
-import MobileNav from '@/components/MobileNav'
+import BottomNav from '@/components/BottomNav'
 
 export default function Home() {
   return (
     <>
-      <MobileNav />
       <main className="min-h-screen">
         <div id="home">
           <HeroSection />
@@ -32,6 +31,7 @@ export default function Home() {
         <QuoteSection />
         <Footer />
       </main>
+      <BottomNav />
     </>
   )
 }
