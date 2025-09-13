@@ -134,17 +134,6 @@ export default function AppGallery() {
         </div>
       )}
 
-      {/* View More Button */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="mt-4"
-      >
-        <button className="w-full bg-gray-100 text-gray-700 font-semibold py-3 rounded-xl active:scale-95 transition-transform">
-          View All Projects →
-        </button>
-      </motion.div>
     </section>
   )
 }

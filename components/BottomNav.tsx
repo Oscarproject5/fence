@@ -59,8 +59,8 @@ export default function BottomNav() {
 
   return (
     <>
-      {/* Fixed Bottom Navigation - Mobile Only */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 md:hidden">
+      {/* Fixed Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 max-w-[430px] mx-auto">
         <div className="flex justify-around items-center h-16">
           {navItems.map((item) => {
             const Icon = item.icon
@@ -89,7 +89,8 @@ export default function BottomNav() {
       {/* Floating Phone Button - Bottom Right */}
       <a
         href="tel:956-555-3362"
-        className="fixed bottom-20 right-4 bg-green-600 hover:bg-green-700 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center z-50 md:hidden transition-all hover:scale-110 active:scale-95"
+        className="fixed bottom-20 right-4 bg-green-600 hover:bg-green-700 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center z-50 transition-all hover:scale-110 active:scale-95"
+        style={{ right: 'calc(50% - 180px)' }}
         aria-label="Call us"
       >
         <FaPhone className="text-xl" />

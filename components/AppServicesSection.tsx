@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaArrowRight } from 'react-icons/fa'
 import Image from 'next/image'
 
 const services = [
@@ -94,7 +93,6 @@ export default function AppServicesSection() {
                 <p className="text-xs text-gray-600 mb-2">{service.description}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-primary-600">{service.badge}</span>
-                  <FaArrowRight className="text-gray-400 text-xs group-active:translate-x-1 transition-transform" />
                 </div>
               </div>
             </div>
