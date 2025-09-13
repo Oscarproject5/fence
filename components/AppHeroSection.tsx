@@ -78,7 +78,7 @@ export default function AppHeroSection() {
             <span>Get Quote</span>
           </button>
           <a
-            href="tel:956-555-3362"
+            href="tel:+19568540899"
             className="bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform"
           >
             <FaPhone />

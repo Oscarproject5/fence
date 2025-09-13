@@ -14,7 +14,7 @@ const navItems = [
   { id: 'services', label: 'Services', icon: FaTools, href: '#services' },
   { id: 'about', label: 'About', icon: FaInfoCircle, href: '#why-choose' },
   { id: 'quote', label: 'Quote', icon: FaEnvelope, href: '#quote-section' },
-  { id: 'call', label: 'Call', icon: FaPhone, href: 'tel:956-555-3362', isPhone: true },
+  { id: 'call', label: 'Call', icon: FaPhone, href: 'tel:+19568540899', isPhone: true },
 ]
 
 export default function BottomNav() {
@@ -59,8 +59,8 @@ export default function BottomNav() {
 
   return (
     <>
-      {/* Fixed Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 max-w-[430px] mx-auto">
+      {/* Fixed Bottom Navigation - Mobile Only */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 max-w-[430px] mx-auto md:hidden">
         <div className="flex justify-around items-center h-16">
           {navItems.map((item) => {
             const Icon = item.icon
@@ -86,10 +86,10 @@ export default function BottomNav() {
         </div>
       </div>
 
-      {/* Floating Phone Button - Bottom Right */}
+      {/* Floating Phone Button - Bottom Right - Mobile Only */}
       <a
-        href="tel:956-555-3362"
-        className="fixed bottom-20 right-4 bg-green-600 hover:bg-green-700 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center z-50 transition-all hover:scale-110 active:scale-95"
+        href="tel:+19568540899"
+        className="fixed bottom-20 right-4 bg-green-600 hover:bg-green-700 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center z-50 transition-all hover:scale-110 active:scale-95 md:hidden"
         style={{ right: 'calc(50% - 180px)' }}
         aria-label="Call us"
       >

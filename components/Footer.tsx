@@ -91,9 +91,9 @@ export default function Footer() {
             <h3 className="font-heading text-lg font-bold mb-4">Contact Us</h3>
             <ul className="space-y-3">
               <li>
-                <a href="tel:956-555-3362" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
+                <a href="tel:+1-956-854-0899" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
                   <FaPhone />
-                  <span>956-555-FENCE (3362)</span>
+                  <span>+1 (956) 854-0899 (3362)</span>
                 </a>
               </li>
               <li>

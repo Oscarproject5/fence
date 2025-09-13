@@ -107,7 +107,7 @@ export default function QuoteSection() {
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
-      setStatusMessage('Oops! Something went wrong. Please try again or call us directly at 956-555-FENCE.')
+      setStatusMessage('Oops! Something went wrong. Please try again or call us directly at +1 (956) 854-0899.')
       
       // Clear error message after 5 seconds
       setTimeout(() => {
@@ -306,10 +306,10 @@ export default function QuoteSection() {
               </h3>
               
               <div className="space-y-4">
-                <a href="tel:956-555-3362" className="flex items-center gap-4 hover:text-yellow-300 transition-colors">
+                <a href="tel:+1-956-854-0899" className="flex items-center gap-4 hover:text-yellow-300 transition-colors">
                   <FaPhone className="text-xl" />
                   <div>
-                    <div className="text-2xl font-bold">956-555-FENCE (3362)</div>
+                    <div className="text-2xl font-bold">+1 (956) 854-0899 (3362)</div>
                     <div className="text-sm opacity-90">Free Estimates Available</div>
                   </div>
                 </a>

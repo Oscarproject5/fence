@@ -118,17 +118,6 @@ export default function AppServicesSection() {
         </div>
       </motion.div>
 
-      {/* CTA Button */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="mt-4"
-      >
-        <button className="w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold py-3 rounded-xl active:scale-95 transition-transform">
-          View All Services →
-        </button>
-      </motion.div>
     </section>
   )
 }

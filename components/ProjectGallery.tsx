@@ -217,10 +217,10 @@ export default function ProjectGallery() {
               Get Your Free Quote
             </button>
             <a
-              href="tel:956-555-3362"
+              href="tel:+1-956-854-0899"
               className="btn-secondary"
             >
-              Call 956-555-FENCE
+              Call +1 (956) 854-0899
             </a>
           </div>
         </motion.div>

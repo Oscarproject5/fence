@@ -6,36 +6,32 @@ import { FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 const testimonials = [
   {
-    name: 'Maria Rodriguez',
+    name: 'Carmen Gonzalez',
     location: 'Brownsville',
     rating: 5,
     text: 'Outstanding work on our privacy fence! Professional crew, fair pricing, and completed ahead of schedule.',
-    date: '2 weeks ago',
-    avatar: '👩'
+    date: '2 weeks ago'
   },
   {
     name: 'John Smith',
     location: 'McAllen',
     rating: 5,
     text: 'They repaired our storm-damaged fence quickly. Great communication and quality work. Highly recommend!',
-    date: '1 month ago',
-    avatar: '👨'
+    date: '1 month ago'
   },
   {
     name: 'Ana Martinez',
     location: 'Harlingen',
     rating: 5,
     text: 'Beautiful wrought iron fence installation. The automatic gate works perfectly. Very happy with the results!',
-    date: '1 month ago',
-    avatar: '👩‍🦱'
+    date: '1 month ago'
   },
   {
     name: 'Robert Johnson',
     location: 'Edinburg',
     rating: 5,
     text: 'Chain link fence for our commercial property. Fast, efficient, and great price. Will use again!',
-    date: '2 months ago',
-    avatar: '👨‍🦰'
+    date: '2 months ago'
   }
 ]
 
@@ -77,18 +73,13 @@ export default function AppTestimonials() {
             className="bg-white rounded-2xl shadow-md border border-gray-100 p-4"
           >
             {/* Header */}
-            <div className="flex items-start gap-3 mb-3">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-2xl">
-                {testimonials[currentIndex].avatar}
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-900">{testimonials[currentIndex].name}</h3>
-                <p className="text-xs text-gray-500">{testimonials[currentIndex].location} • {testimonials[currentIndex].date}</p>
-                <div className="flex gap-0.5 mt-1">
-                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <FaStar key={i} className="text-yellow-400 text-xs" />
-                  ))}
-                </div>
+            <div className="mb-3">
+              <h3 className="font-semibold text-gray-900">{testimonials[currentIndex].name}</h3>
+              <p className="text-xs text-gray-500">{testimonials[currentIndex].location} • {testimonials[currentIndex].date}</p>
+              <div className="flex gap-0.5 mt-1">
+                {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                  <FaStar key={i} className="text-yellow-400 text-xs" />
+                ))}
               </div>
             </div>
             
@@ -136,12 +127,9 @@ export default function AppTestimonials() {
         transition={{ delay: 0.3 }}
         className="mt-4 bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-4"
       >
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-semibold text-gray-900">Verified Reviews</p>
-            <p className="text-xs text-gray-600">From real customers</p>
-          </div>
-          <div className="text-2xl">✅</div>
+        <div>
+          <p className="text-sm font-semibold text-gray-900">Verified Reviews</p>
+          <p className="text-xs text-gray-600">From real customers</p>
         </div>
       </motion.div>
     </section>

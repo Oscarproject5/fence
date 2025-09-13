@@ -15,7 +15,7 @@ export default function AppFooter() {
         <a href="#why-choose" className="bg-white rounded-lg p-3 text-center border border-gray-200">
           <p className="text-xs font-medium text-gray-700">About Us</p>
         </a>
-        <a href="tel:956-555-3362" className="bg-white rounded-lg p-3 text-center border border-gray-200">
+        <a href="tel:+19568540899" className="bg-white rounded-lg p-3 text-center border border-gray-200">
           <p className="text-xs font-medium text-gray-700">Call Now</p>
         </a>
         <a href="#quote-section" className="bg-white rounded-lg p-3 text-center border border-gray-200">
@@ -28,7 +28,7 @@ export default function AppFooter() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-xs font-semibold text-gray-700">📞 Call Us</p>
-            <p className="text-sm font-bold text-primary-600">956-555-FENCE</p>
+            <p className="text-sm font-bold text-primary-600">+1 (956) 854-0899</p>
           </div>
           <div className="text-right">
             <p className="text-xs font-semibold text-gray-700">⏰ Hours</p>

@@ -86,10 +86,10 @@ export default function HeroSection() {
               Get a Free Fence Quote Today
             </button>
             <a
-              href="tel:956-555-3362"
+              href="tel:+1-956-854-0899"
               className="bg-white/95 hover:bg-white text-gray-900 font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-200 text-sm sm:text-lg flex items-center justify-center gap-2 w-full sm:w-auto"
             >
-              <FaPhone className="text-yellow-500" /> Call 956-555-FENCE
+              <FaPhone className="text-yellow-500" /> Call +1 (956) 854-0899
             </a>
           </motion.div>
 

@@ -241,8 +241,8 @@ export default function ServiceAreaMap() {
                 <FaPhone className="text-green-600 text-xl" />
                 <h4 className="font-bold text-gray-800">Call for Service</h4>
               </div>
-              <a href="tel:956-555-3362" className="text-2xl font-bold text-secondary-600 hover:text-secondary-700">
-                956-555-FENCE
+              <a href="tel:+1-956-854-0899" className="text-2xl font-bold text-secondary-600 hover:text-secondary-700">
+                +1 (956) 854-0899
               </a>
               <p className="text-sm text-gray-600 mt-2">
                 Free estimates • Licensed & Insured

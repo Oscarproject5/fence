@@ -38,7 +38,7 @@ export default function MobileNav() {
           
           <div className="flex items-center gap-3">
             <a 
-              href="tel:956-555-3362"
+              href="tel:+1-956-854-0899"
               className="bg-green-600 text-white p-2 rounded-full"
             >
               <FaPhone className="text-sm" />
@@ -103,10 +103,10 @@ export default function MobileNav() {
               {/* CTA Buttons */}
               <div className="absolute bottom-0 left-0 right-0 p-4 border-t bg-gray-50">
                 <a
-                  href="tel:956-555-3362"
+                  href="tel:+1-956-854-0899"
                   className="block w-full bg-secondary-600 text-white text-center py-3 rounded-lg font-semibold mb-2"
                 >
-                  Call: 956-555-FENCE
+                  Call: +1 (956) 854-0899
                 </a>
                 <button
                   onClick={() => handleNavClick('#quote-section')}

@@ -181,10 +181,10 @@ export default function OurProcess() {
               Start Your Free Consultation
             </button>
             <a
-              href="tel:956-555-3362"
+              href="tel:+1-956-854-0899"
               className="btn-secondary"
             >
-              Call Now: 956-555-FENCE
+              Call Now: +1 (956) 854-0899
             </a>
           </div>
         </motion.div>

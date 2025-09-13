@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: 'RGV Fencing - #1 Fence Installation Brownsville, McAllen, Harlingen TX | Free Quote',
     template: '%s | RGV Fencing - Rio Grande Valley Fence Contractors'
   },
-  description: '⭐ Top-rated fence installation & repair in Rio Grande Valley. Wood, chain link, wrought iron fencing. Serving Brownsville, McAllen, Harlingen. 24/7 emergency repairs. Free estimates! Call 956-555-FENCE',
+  description: '⭐ Top-rated fence installation & repair in Rio Grande Valley. Wood, chain link, wrought iron fencing. Serving Brownsville, McAllen, Harlingen. 24/7 emergency repairs. Free estimates! Call +1 (956) 854-0899',
   keywords: [
     'fence installation Brownsville TX',
     'fence repair McAllen',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'RGV Fencing - Professional Fence Installation & Repair in Rio Grande Valley',
-    description: 'Top-rated fence contractors serving Brownsville, McAllen, Harlingen. Wood, chain link, wrought iron installation. Free quotes! Call 956-555-FENCE',
+    description: 'Top-rated fence contractors serving Brownsville, McAllen, Harlingen. Wood, chain link, wrought iron installation. Free quotes! Call +1 (956) 854-0899',
     url: 'https://rgvfencing.com',
     siteName: 'RGV Fencing',
     images: [
@@ -82,7 +82,7 @@ const jsonLd = {
   name: 'RGV Fencing',
   image: 'https://rgvfencing.com/images/hero-fence.jpg',
   logo: 'https://rgvfencing.com/logo.png',
-  telephone: '956-555-3362',
+  telephone: '+1-956-854-0899',
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',

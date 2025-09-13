@@ -34,7 +34,7 @@ export default function SEOContent() {
             <p>
               Our <strong>emergency fence repair services</strong> are available 24/7 throughout the Rio Grande Valley, 
               especially crucial during hurricane season. From storm damage repairs to routine maintenance, we respond 
-              quickly to secure your property. Call <strong>956-555-FENCE (3362)</strong> for immediate assistance.
+              quickly to secure your property. Call <strong>+1 (956) 854-0899 (3362)</strong> for immediate assistance.
             </p>
           </div>
         </motion.div>
@@ -100,7 +100,7 @@ export default function SEOContent() {
           <div className="text-center">
             <FaPhone className="text-secondary-600 text-3xl mx-auto mb-3" />
             <h4 className="font-bold text-gray-800 mb-1">Call Now</h4>
-            <a href="tel:956-555-3362" className="text-secondary-600 font-bold">956-555-FENCE</a>
+            <a href="tel:+1-956-854-0899" className="text-secondary-600 font-bold">+1 (956) 854-0899</a>
           </div>
           <div className="text-center">
             <FaClock className="text-secondary-600 text-3xl mx-auto mb-3" />
