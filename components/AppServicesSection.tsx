@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { FaArrowRight } from 'react-icons/fa'
+import Image from 'next/image'
 
 const services = [
   {
     title: 'Wood Fencing',
     badge: 'Most Popular',
     description: 'Privacy, cedar, pine options',
+    image: '/images/residential fence.jpeg',
     color: 'bg-amber-50 border-amber-200',
     popular: true
   },
@@ -15,30 +17,35 @@ const services = [
     title: 'Chain Link',
     badge: 'Best Value',
     description: 'Durable & affordable',
+    image: '/images/commercial chain link.jpeg',
     color: 'bg-gray-50 border-gray-200'
   },
   {
     title: 'Wrought Iron',
     badge: 'Premium',
     description: 'Elegant & secure',
+    image: '/images/ornamental iron.jpeg',
     color: 'bg-slate-50 border-slate-200'
   },
   {
     title: 'Ranch Fencing',
     badge: 'Custom Design',
     description: 'Large property solutions',
+    image: '/images/hero-fence.jpg',
     color: 'bg-green-50 border-green-200'
   },
   {
     title: 'Repairs',
     badge: '24/7 Service',
     description: 'Emergency repairs available',
+    image: '/images/storm damage repair.jpeg',
     color: 'bg-red-50 border-red-200'
   },
   {
     title: 'Gates',
     badge: 'Smart Options',
     description: 'Automatic & manual',
+    image: '/images/custom entry gate.jpeg',
     color: 'bg-blue-50 border-blue-200'
   }
 ]
@@ -62,18 +69,33 @@ export default function AppServicesSection() {
             transition={{ delay: index * 0.05 }}
             className="relative"
           >
-            <div className={`${service.color} border rounded-2xl p-4 h-full relative overflow-hidden group active:scale-95 transition-transform`}>
+            <div className={`${service.color} border rounded-2xl overflow-hidden h-full relative group active:scale-95 transition-transform`}>
               {service.popular && (
-                <span className="absolute top-2 right-2 bg-yellow-400 text-xs font-bold px-2 py-0.5 rounded-full">
+                <span className="absolute top-2 right-2 bg-yellow-400 text-xs font-bold px-2 py-0.5 rounded-full z-10">
                   Popular
                 </span>
               )}
               
-              <h3 className="font-semibold text-base text-gray-900 mb-2">{service.title}</h3>
-              <p className="text-xs text-gray-600 mb-2">{service.description}</p>
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-primary-600">{service.badge}</span>
-                <FaArrowRight className="text-gray-400 text-xs group-active:translate-x-1 transition-transform" />
+              {/* Service Image */}
+              <div className="relative h-24 w-full overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 430px) 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
+              
+              {/* Service Content */}
+              <div className="p-3">
+                <h3 className="font-semibold text-sm text-gray-900 mb-1">{service.title}</h3>
+                <p className="text-xs text-gray-600 mb-2">{service.description}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-primary-600">{service.badge}</span>
+                  <FaArrowRight className="text-gray-400 text-xs group-active:translate-x-1 transition-transform" />
+                </div>
               </div>
             </div>
           </motion.div>

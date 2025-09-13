@@ -1,5 +1,6 @@
 import AppHeroSection from '@/components/AppHeroSection'
 import AppServicesSection from '@/components/AppServicesSection'
+import AppGallery from '@/components/AppGallery'
 import AppTestimonials from '@/components/AppTestimonials'
 import AppWhyChooseUs from '@/components/AppWhyChooseUs'
 import AppOurProcess from '@/components/AppOurProcess'
@@ -23,6 +24,9 @@ export default function Home() {
 
           <div id="services" className="app-section">
             <AppServicesSection />
+          </div>
+          <div id="gallery" className="app-section">
+            <AppGallery />
           </div>
           <div id="why-choose" className="app-section">
             <AppWhyChooseUs />

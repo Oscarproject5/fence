@@ -8,26 +8,6 @@ export default function AppHeader() {
 
   return (
     <>
-      {/* Status Bar */}
-      <div className="bg-gray-900 text-white text-xs px-4 py-1 flex justify-between items-center md:hidden">
-        <span className="font-medium">9:41 AM</span>
-        <div className="flex items-center gap-1">
-          <div className="w-4 h-3 border border-white rounded-sm relative">
-            <div className="absolute inset-0.5 bg-white rounded-sm" style={{ width: '70%' }}></div>
-          </div>
-          <div className="w-3 h-3">
-            <svg viewBox="0 0 24 24" fill="white">
-              <path d="M1 9l2-2v8a2 2 0 002 2h14a2 2 0 002-2V7l2 2V6l-3-4v.01L12 0 4 8V6l1 3z"/>
-            </svg>
-          </div>
-          <div className="w-3 h-3">
-            <svg viewBox="0 0 24 24" fill="white">
-              <path d="M3.055 11L2 6.5 8.5 0l1.74 2.612L7.89 5.73l2.335.93L12 9.5l-2.82 1.115L7.89 13.727l2.35 3.117L8.5 19.5 2 13l1.055-2z"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-
       {/* App Header */}
       <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-40">
         <div className="flex items-center justify-between px-4 h-14">
