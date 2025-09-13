@@ -1,37 +1,44 @@
-import HeroSection from '@/components/HeroSection'
-import ServicesSection from '@/components/ServicesSection'
-import WhyChooseUs from '@/components/WhyChooseUs'
-import OurProcess from '@/components/OurProcess'
-import Testimonials from '@/components/Testimonials'
-import QuoteSection from '@/components/QuoteSection'
-import SEOContent from '@/components/SEOContent'
-import Footer from '@/components/Footer'
+import AppHeroSection from '@/components/AppHeroSection'
+import AppServicesSection from '@/components/AppServicesSection'
+import AppTestimonials from '@/components/AppTestimonials'
+import AppWhyChooseUs from '@/components/AppWhyChooseUs'
+import AppOurProcess from '@/components/AppOurProcess'
+import AppQuoteSection from '@/components/AppQuoteSection'
+import AppFooter from '@/components/AppFooter'
 import BottomNav from '@/components/BottomNav'
+import AppHeader from '@/components/AppHeader'
 
 export default function Home() {
   return (
-    <>
-      <main className="min-h-screen">
-        <div id="home">
-          <HeroSection />
-        </div>
-        <div id="services">
-          <ServicesSection />
-        </div>
-        <div id="why-choose">
-          <WhyChooseUs />
-        </div>
-        <div id="process">
-          <OurProcess />
-        </div>
-        <div id="testimonials">
-          <Testimonials />
-        </div>
-        <SEOContent />
-        <QuoteSection />
-        <Footer />
-      </main>
-      <BottomNav />
-    </>
+    <div className="min-h-screen bg-gray-50 max-w-[430px] mx-auto relative shadow-2xl">
+      {/* Phone Frame Effect */}
+      <div className="relative bg-white">
+        <AppHeader />
+        
+        {/* Scrollable Content Area */}
+        <main className="pb-20 overflow-y-auto h-[calc(100vh-120px)] md:h-auto scroll-smooth">
+          <div id="home" className="app-section">
+            <AppHeroSection />
+          </div>
+
+          <div id="services" className="app-section">
+            <AppServicesSection />
+          </div>
+          <div id="why-choose" className="app-section">
+            <AppWhyChooseUs />
+          </div>
+          <div id="process" className="app-section">
+            <AppOurProcess />
+          </div>
+          <div id="testimonials" className="app-section">
+            <AppTestimonials />
+          </div>
+          <AppQuoteSection />
+          <AppFooter />
+        </main>
+        
+        <BottomNav />
+      </div>
+    </div>
   )
 }
