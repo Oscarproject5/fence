@@ -65,7 +65,7 @@ const services = [
       'Large area coverage'
     ],
     icon: FaHorse,
-    image: '/images/residential fence.jpeg',
+    image: '/images/ranch-fence.png',
     color: 'from-green-700 to-green-800'
   },
   {

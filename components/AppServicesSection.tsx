@@ -30,7 +30,7 @@ const services = [
     title: 'Ranch Fencing',
     badge: 'Custom Design',
     description: 'Large property solutions',
-    image: '/images/hero-fence.jpg',
+    image: '/images/ranch-fence.png',
     color: 'bg-green-50 border-green-200'
   },
   {
