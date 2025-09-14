@@ -16,7 +16,7 @@ const projects = [
     id: 2,
     title: 'Ranch Fencing - McAllen Area',
     category: 'Ranch & Farm',
-    image: '/images/residential fence.jpeg',
+    image: '/images/ranch-fence.png',
     description: 'Complete ranch perimeter with gates and cattle guards'
   },
   {
