@@ -49,7 +49,8 @@ export function middleware(request: NextRequest) {
     // Clean up old entries periodically (every 100 requests)
     if (Math.random() < 0.01) {
       const cutoffTime = now - RATE_LIMIT_WINDOW * 2
-      for (const [key, value] of rateLimitMap.entries()) {
+      const entries = Array.from(rateLimitMap.entries())
+      for (const [key, value] of entries) {
         if (value.resetTime < cutoffTime) {
           rateLimitMap.delete(key)
         }
