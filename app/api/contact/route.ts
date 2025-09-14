@@ -23,7 +23,8 @@ function checkRateLimit(ip: string): boolean {
 
   // Clean up old entries periodically
   if (Math.random() < 0.01) {
-    for (const [key, times] of requestMap.entries()) {
+    const entries = Array.from(requestMap.entries())
+    for (const [key, times] of entries) {
       const recent = times.filter(time => now - time < TIME_WINDOW)
       if (recent.length === 0) {
         requestMap.delete(key)
