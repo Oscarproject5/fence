@@ -10,6 +10,9 @@ export default function AppQuoteSection() {
     service: '',
     message: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [statusMessage, setStatusMessage] = useState('')
 
   const services = [
     'Wood Fence',
@@ -20,9 +23,91 @@ export default function AppQuoteSection() {
     'Other'
   ]
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    const useVercelApi = process.env.NEXT_PUBLIC_USE_VERCEL_API === 'true'
+
+    try {
+      let response
+      let result
+
+      if (useVercelApi) {
+        // Option 1: Use Vercel API Route
+        response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        })
+        result = await response.json()
+
+      } else if (accessKey && accessKey !== 'YOUR_ACCESS_KEY_HERE') {
+        // Option 2: Use Web3Forms directly from client
+        const web3FormData = {
+          access_key: accessKey,
+          subject: `New Fence Quote Request from ${formData.name}`,
+          from_name: 'RGV Fencing Mobile App',
+          name: formData.name,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message || 'No additional details provided',
+          botcheck: false
+        }
+
+        response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(web3FormData)
+        })
+        result = await response.json()
+
+      } else {
+        // Option 3: Fallback for development/testing
+        console.log('Form submission (dev mode):', formData)
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        result = { success: true }
+      }
+
+      if (result.success) {
+        setSubmitStatus('success')
+        setStatusMessage('Thank you! We\'ll contact you within 2 hours.')
+        setFormData({
+          name: '',
+          phone: '',
+          service: '',
+          message: ''
+        })
+      } else {
+        throw new Error(result.message || 'Form submission failed')
+      }
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+        setStatusMessage('')
+      }, 5000)
+
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+      setStatusMessage('Oops! Something went wrong. Please call us at (956) 854-0899.')
+
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+        setStatusMessage('')
+      }, 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -42,7 +127,7 @@ export default function AppQuoteSection() {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Name Input */}
           <div>
-            <label className="text-xs font-semibold text-gray-700 mb-1 block">Your Name</label>
+            <label className="text-xs font-semibold text-gray-700 mb-1 block">Your Name *</label>
             <input
               type="text"
               required
@@ -55,7 +140,7 @@ export default function AppQuoteSection() {
 
           {/* Phone Input */}
           <div>
-            <label className="text-xs font-semibold text-gray-700 mb-1 block">Phone Number</label>
+            <label className="text-xs font-semibold text-gray-700 mb-1 block">Phone Number *</label>
             <input
               type="tel"
               required
@@ -68,7 +153,7 @@ export default function AppQuoteSection() {
 
           {/* Service Selection */}
           <div>
-            <label className="text-xs font-semibold text-gray-700 mb-2 block">Service Needed</label>
+            <label className="text-xs font-semibold text-gray-700 mb-2 block">Service Needed *</label>
             <div className="grid grid-cols-2 gap-2">
               {services.map((service) => (
                 <button
@@ -76,8 +161,8 @@ export default function AppQuoteSection() {
                   type="button"
                   onClick={() => setFormData({...formData, service})}
                   className={`py-2 px-3 rounded-lg border text-sm font-medium transition-all ${
-                    formData.service === service 
-                      ? 'bg-primary-600 text-white border-primary-600' 
+                    formData.service === service
+                      ? 'bg-primary-600 text-white border-primary-600'
                       : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
                   }`}
                 >
@@ -102,11 +187,43 @@ export default function AppQuoteSection() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold py-3 rounded-xl active:scale-95 transition-transform"
+            disabled={isSubmitting || !formData.name || !formData.phone || !formData.service}
+            className={`w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold py-3 rounded-xl transition-all ${
+              isSubmitting || !formData.name || !formData.phone || !formData.service
+                ? 'opacity-50 cursor-not-allowed'
+                : 'active:scale-95'
+            }`}
           >
-            Get Free Quote →
+            {isSubmitting ? 'Sending...' : 'Get Free Quote →'}
           </button>
         </form>
+
+        {/* Status Messages */}
+        {submitStatus === 'success' && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-green-600">✓</span>
+              <p className="text-xs text-green-800">{statusMessage}</p>
+            </div>
+          </motion.div>
+        )}
+
+        {submitStatus === 'error' && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-red-600">!</span>
+              <p className="text-xs text-red-800">{statusMessage}</p>
+            </div>
+          </motion.div>
+        )}
       </motion.div>
 
       {/* Trust Badges */}
