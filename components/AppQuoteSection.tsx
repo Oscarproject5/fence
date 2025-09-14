@@ -8,8 +8,10 @@ export default function AppQuoteSection() {
     name: '',
     phone: '',
     service: '',
-    message: ''
+    message: '',
+    honeypot: '' // Hidden field for bot detection
   })
+  const [formStartTime] = useState(Date.now()) // Track when form was loaded
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [statusMessage, setStatusMessage] = useState('')
@@ -42,7 +44,10 @@ export default function AppQuoteSection() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify({
+            ...formData,
+            timestamp: formStartTime
+          })
         })
         result = await response.json()
 
@@ -56,7 +61,9 @@ export default function AppQuoteSection() {
           phone: formData.phone,
           service: formData.service,
           message: formData.message || 'No additional details provided',
-          botcheck: false
+          botcheck: false,
+          timestamp: formStartTime,
+          honeypot: formData.honeypot
         }
 
         response = await fetch('https://api.web3forms.com/submit', {
@@ -83,7 +90,8 @@ export default function AppQuoteSection() {
           name: '',
           phone: '',
           service: '',
-          message: ''
+          message: '',
+          honeypot: ''
         })
       } else {
         throw new Error(result.message || 'Form submission failed')
@@ -196,6 +204,18 @@ export default function AppQuoteSection() {
           >
             {isSubmitting ? 'Sending...' : 'Get Free Quote →'}
           </button>
+
+          {/* Honeypot field - hidden from users */}
+          <input
+            type="text"
+            name="honeypot"
+            value={formData.honeypot}
+            onChange={(e) => setFormData({...formData, honeypot: e.target.value})}
+            style={{ display: 'none' }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
         </form>
 
         {/* Status Messages */}
