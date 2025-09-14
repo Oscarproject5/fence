@@ -11,7 +11,9 @@ const BLOCKED_IPS: string[] = [] // Add malicious IPs here if needed
 
 export function middleware(request: NextRequest) {
   const response = NextResponse.next()
-  const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown'
+  const ip = request.headers.get('x-forwarded-for') ||
+             request.headers.get('x-real-ip') ||
+             'unknown'
   const url = request.nextUrl.pathname
 
   // Block known malicious IPs
